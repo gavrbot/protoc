@@ -1,1 +1,1 @@
-module protoc
+module github.com/gavrbot/protoc
