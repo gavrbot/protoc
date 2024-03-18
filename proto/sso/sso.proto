@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "gavrbot.sso.v1;ssov1";
+
+service Auth {
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+}
+
+message RegisterRequest {
+  string email = 1; // email of user to register
+  string password = 2; // password of user to register
+}
+
+message RegisterResponse {
+  int64 user_id = 1; // user_id of registered user
+}
+
+message LoginRequest {
+  string email = 1; // email of user to login
+  string password = 2; // password of user to login
+  int32 app_id = 3; // ID of app to login to
+}
+
+message LoginResponse {
+  string token = 1; // auth token of logged user
+}
+
+message IsAdminRequest {
+  int64 user_id = 1; // user_id to validate
+}
+
+message IsAdminResponse {
+  bool is_admin = 1; // indicates whether user is admin or not
+}
